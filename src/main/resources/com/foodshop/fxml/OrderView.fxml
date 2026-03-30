@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.OrderController"
+      spacing="14" styleClass="view-root">
+
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+
+        <TextField fx:id="txtSearch"
+                   promptText="🔍  Tìm mã đơn, tên khách..."
+                   prefWidth="240"
+                   onKeyReleased="#handleSearch"/>
+
+        <ComboBox fx:id="cbStatusFilter"
+                  promptText="Trạng thái..."
+                  prefWidth="160"
+                  onAction="#handleFilter"/>
+
+        <DatePicker fx:id="dpFrom" promptText="Từ ngày" prefWidth="140"/>
+        <DatePicker fx:id="dpTo"   promptText="Đến ngày" prefWidth="140"/>
+        <Button text="🔍 Lọc" styleClass="btn-secondary" onAction="#handleFilter"/>
+        <Button text="🔄" styleClass="btn-secondary" onAction="#handleRefresh"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="➕ Tạo đơn hàng"
+                styleClass="btn-primary"
+                onAction="#handleCreateOrder"/>
+    </HBox>
+
+    <TableView fx:id="tblOrders" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colCode"       text="Mã đơn"     prefWidth="120"/>
+            <TableColumn fx:id="colCustomer"   text="Khách hàng" prefWidth="170"/>
+            <TableColumn fx:id="colItems"      text="SP"         prefWidth="50"/>
+            <TableColumn fx:id="colTotal"      text="Tổng tiền"  prefWidth="130"/>
+            <TableColumn fx:id="colPayment"    text="Thanh toán" prefWidth="120"/>
+            <TableColumn fx:id="colStatus"     text="Trạng thái" prefWidth="130"/>
+            <TableColumn fx:id="colCreatedBy"  text="NV tạo"     prefWidth="120"/>
+            <TableColumn fx:id="colDate"       text="Ngày đặt"   prefWidth="145"/>
+            <TableColumn fx:id="colActions"    text="Thao tác"   prefWidth="180"/>
+        </columns>
+        <placeholder><Label text="Không tìm thấy đơn hàng nào"/></placeholder>
+    </TableView>
+
+    <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+        <Label fx:id="lblTotal"     text="Tổng: 0 đơn" styleClass="status-text"/>
+        <Label fx:id="lblPending"   text="" styleClass="status-warning"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblTotalRevenue" text="" styleClass="status-text"/>
+    </HBox>
+
+</VBox>

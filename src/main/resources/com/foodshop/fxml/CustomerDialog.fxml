@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.CustomerDialogController"
+      spacing="14" styleClass="dialog-root">
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <GridPane hgap="16" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Họ và tên: *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+
+        <Label text="Điện thoại: *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtPhone" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Email:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtEmail" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+        <Label text="Địa chỉ:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="3"/>
+
+        <Label text="Quận/Huyện:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtDistrict" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Thành phố:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtCity" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+
+        <Label text="Loại khách:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <ComboBox fx:id="cbType" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Điểm tích lũy:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+        <TextField fx:id="txtPoints" text="0" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+
+        <Label text="Ghi chú:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextArea fx:id="txtNotes" prefRowCount="3" wrapText="true"
+                  GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="3"/>
+    </GridPane>
+
+    <Label fx:id="lblError" styleClass="error-message" wrapText="true" visible="false" managed="false"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Hủy" styleClass="btn-secondary" onAction="#handleCancel" prefWidth="90"/>
+        <Button fx:id="btnSave" text="💾 Lưu" styleClass="btn-primary" onAction="#handleSave" prefWidth="120"/>
+    </HBox>
+</VBox>

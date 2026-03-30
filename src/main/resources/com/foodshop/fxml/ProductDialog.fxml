@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.ProductDialogController"
+      spacing="14" styleClass="dialog-root">
+
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <GridPane hgap="16" vgap="14">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="110" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints prefWidth="110" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Mã sản phẩm:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtCode" promptText="Tự động sinh nếu để trống"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Danh mục: *" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="cbCategory" maxWidth="Infinity"
+                  GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+        <Label text="Tên sản phẩm: *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtName" promptText="Tên sản phẩm..."
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"
+                   GridPane.columnSpan="3"/>
+
+        <Label text="Giá bán: *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtPriceSell" promptText="0"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Giá nhập:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtPriceImport" promptText="0"
+                   GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+        <Label text="Đơn vị tính: *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="cbUnit" maxWidth="Infinity"
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Tồn kho:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtStock" promptText="0"
+                   GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+
+        <Label text="Hạn sử dụng:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <DatePicker fx:id="dpExpiry" maxWidth="Infinity"
+                    GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="Xuất xứ:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+        <TextField fx:id="txtOrigin" promptText="Việt Nam..."
+                   GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+
+        <Label text="Thương hiệu:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtBrand"
+                   GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <Label text="Cảnh báo tồn:" styleClass="form-label" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtMinStock" promptText="5"
+                   GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+
+        <Label text="Mô tả:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextArea fx:id="txtDescription" prefRowCount="3" wrapText="true"
+                  GridPane.columnIndex="1" GridPane.rowIndex="6"
+                  GridPane.columnSpan="3"/>
+    </GridPane>
+
+    <Label fx:id="lblError" styleClass="error-message" wrapText="true"
+           visible="false" managed="false"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Hủy" styleClass="btn-secondary" onAction="#handleCancel" prefWidth="100"/>
+        <Button fx:id="btnSave" text="💾 Lưu sản phẩm" styleClass="btn-primary"
+                onAction="#handleSave" prefWidth="140"/>
+    </HBox>
+
+</VBox>

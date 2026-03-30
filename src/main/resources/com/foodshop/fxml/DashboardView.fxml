@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.DashboardController"
+      spacing="20" styleClass="dashboard-root">
+
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <GridPane hgap="16" vgap="16">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+            <ColumnConstraints percentWidth="25"/>
+        </columnConstraints>
+
+        <VBox styleClass="stat-card, stat-blue" GridPane.columnIndex="0" spacing="8">
+            <Label text="🛒 ĐƠN HÀNG HÔM NAY" styleClass="stat-label"/>
+            <Label fx:id="lblTodayOrders" text="0" styleClass="stat-value"/>
+            <Label fx:id="lblTodayOrdersNote" text="đơn" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-green" GridPane.columnIndex="1" spacing="8">
+            <Label text="💰 DOANH THU HÔM NAY" styleClass="stat-label"/>
+            <Label fx:id="lblTodayRevenue" text="0 ₫" styleClass="stat-value"/>
+            <Label fx:id="lblMonthRevenue" text="Tháng này: 0 ₫" styleClass="stat-note"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-orange" GridPane.columnIndex="2" spacing="8">
+            <Label text="🥦 SẢN PHẨM" styleClass="stat-label"/>
+            <Label fx:id="lblTotalProducts" text="0" styleClass="stat-value"/>
+            <Label fx:id="lblLowStock" text="0 sắp hết hàng" styleClass="stat-note stat-warning"/>
+        </VBox>
+
+        <VBox styleClass="stat-card, stat-purple" GridPane.columnIndex="3" spacing="8">
+            <Label text="👥 KHÁCH HÀNG" styleClass="stat-label"/>
+            <Label fx:id="lblTotalCustomers" text="0" styleClass="stat-value"/>
+            <Label fx:id="lblPendingOrders" text="0 đơn chờ xử lý" styleClass="stat-note"/>
+        </VBox>
+    </GridPane>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="📋 Đơn hàng gần đây" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Xem tất cả →" styleClass="btn-link" onAction="#viewAllOrders"/>
+            </HBox>
+            <TableView fx:id="tblRecentOrders" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colOrderCode" text="Mã đơn" prefWidth="110"/>
+                    <TableColumn fx:id="colOrderCustomer" text="Khách hàng" prefWidth="150"/>
+                    <TableColumn fx:id="colOrderTotal" text="Tổng tiền" prefWidth="120"/>
+                    <TableColumn fx:id="colOrderStatus" text="Trạng thái" prefWidth="130"/>
+                    <TableColumn fx:id="colOrderDate" text="Ngày đặt" prefWidth="140"/>
+                </columns>
+                <placeholder><Label text="Chưa có đơn hàng nào"/></placeholder>
+            </TableView>
+        </VBox>
+
+        <VBox styleClass="dashboard-card" prefWidth="280" spacing="10">
+            <Label text="⚠️ Sản phẩm cần nhập thêm" styleClass="card-title"/>
+            <ListView fx:id="lstLowStock" VBox.vgrow="ALWAYS" styleClass="warning-list">
+                <placeholder><Label text="Tất cả sản phẩm đều còn hàng ✓"/></placeholder>
+            </ListView>
+        </VBox>
+
+    </HBox>
+</VBox>

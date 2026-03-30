@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.PromotionController"
+      spacing="14" styleClass="view-root">
+
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+        <Tab text="🎁 Chương trình khuyến mãi">
+            <HBox spacing="16" style="-fx-padding:16;">
+
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+                        <TextField fx:id="txtSearchPromo" promptText="🔍 Tìm chương trình..." prefWidth="220"
+                                   onKeyReleased="#handleSearchPromo"/>
+                        <ComboBox fx:id="cbCustomerType" prefWidth="150" promptText="Loại khách"/>
+                        <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#loadPromotions"/>
+                    </HBox>
+                    <TableView fx:id="tblPromotions" VBox.vgrow="ALWAYS" styleClass="data-table">
+                        <columns>
+                            <TableColumn fx:id="proColName"       text="Tên chương trình"  prefWidth="200"/>
+                            <TableColumn fx:id="proColType"       text="Loại KH"           prefWidth="110"/>
+                            <TableColumn fx:id="proColDiscount"   text="Giảm giá"          prefWidth="100"/>
+                            <TableColumn fx:id="proColMinOrder"   text="Đơn tối thiểu"     prefWidth="130"/>
+                            <TableColumn fx:id="proColDateFrom"   text="Từ ngày"           prefWidth="110"/>
+                            <TableColumn fx:id="proColDateTo"     text="Đến ngày"          prefWidth="110"/>
+                            <TableColumn fx:id="proColActive"     text="Trạng thái"        prefWidth="100"/>
+                            <TableColumn fx:id="proColActions"    text="Thao tác"          prefWidth="120"/>
+                        </columns>
+                        <placeholder><Label text="Chưa có chương trình khuyến mãi nào"/></placeholder>
+                    </TableView>
+                </VBox>
+
+                <ScrollPane fitToWidth="true" prefWidth="310" minWidth="290"
+                            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                            style="-fx-background-color:transparent; -fx-border-color:transparent;">
+                    <VBox spacing="10"
+                          style="-fx-background-color:white; -fx-padding:16; -fx-background-radius:8;
+                                 -fx-border-color:#e2e8f0; -fx-border-radius:8; -fx-border-width:1;">
+
+                        <Label fx:id="lblPromoFormTitle" text="➕ Thêm khuyến mãi"
+                               style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#1e293b;"/>
+                        <Separator/>
+
+                        <Label text="Tên chương trình *" styleClass="form-label"/>
+                        <TextField fx:id="txtPromoName" promptText="VD: Ưu đãi cuối tuần"/>
+
+                        <Label text="Loại khách hàng *" styleClass="form-label"/>
+                        <ComboBox fx:id="cbPromoCustomerType" maxWidth="Infinity"/>
+
+                        <Label text="Loại giảm giá *" styleClass="form-label"/>
+                        <ComboBox fx:id="cbDiscountType" maxWidth="Infinity"/>
+
+                        <Label text="Giá trị giảm *" styleClass="form-label"/>
+                        <TextField fx:id="txtDiscountValue" promptText="VD: 10 (%) hoặc 50000 (VNĐ)"/>
+
+                        <Label text="Đơn hàng tối thiểu" styleClass="form-label"/>
+                        <TextField fx:id="txtMinOrder" promptText="0 = không yêu cầu"/>
+
+                        <Label text="Từ ngày *" styleClass="form-label"/>
+                        <DatePicker fx:id="dpPromoFrom" maxWidth="Infinity"/>
+
+                        <Label text="Đến ngày *" styleClass="form-label"/>
+                        <DatePicker fx:id="dpPromoTo" maxWidth="Infinity"/>
+
+                        <Label text="Mô tả" styleClass="form-label"/>
+                        <TextArea fx:id="txtPromoDesc" prefRowCount="2" wrapText="true"
+                                  promptText="Mô tả chi tiết chương trình..."/>
+
+                        <CheckBox fx:id="chkPromoActive" text="Đang hoạt động" selected="true"/>
+                        <Separator/>
+                        <HBox spacing="8">
+                            <Button fx:id="btnSavePromo" text="➕ Thêm mới" styleClass="btn-primary"
+                                    onAction="#handleSavePromo" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                            <Button text="✖ Hủy" styleClass="btn-secondary" onAction="#handleClearPromo"/>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+
+            </HBox>
+        </Tab>
+
+        <Tab text="⭐ Điểm tích lũy">
+            <VBox spacing="12" style="-fx-padding:16;">
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+                    <TextField fx:id="txtSearchPoints" prefWidth="250"
+                               promptText="🔍 Tìm tên hoặc số điện thoại khách..."
+                               onKeyReleased="#handleSearchPoints"/>
+                    <ComboBox fx:id="cbVipFilter" prefWidth="150" promptText="Loại khách"/>
+                    <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#loadCustomerPoints"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="💡 Điểm tự động cộng khi đơn hoàn thành (10.000₫ = 1 điểm)"
+                           style="-fx-text-fill:#6b7280; -fx-font-size:11px;"/>
+                </HBox>
+
+                <TableView fx:id="tblCustomerPoints" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="ptColName"    text="Họ tên"         prefWidth="180"/>
+                        <TableColumn fx:id="ptColPhone"   text="Số điện thoại"  prefWidth="130"/>
+                        <TableColumn fx:id="ptColType"    text="Loại KH"        prefWidth="110"/>
+                        <TableColumn fx:id="ptColPoints"  text="Điểm tích lũy"  prefWidth="120"/>
+                        <TableColumn fx:id="ptColOrders"  text="Số đơn"         prefWidth="90"/>
+                        <TableColumn fx:id="ptColSpent"   text="Tổng chi tiêu"  prefWidth="140"/>
+                        <TableColumn fx:id="ptColLevel"   text="Hạng"           prefWidth="100"/>
+                    </columns>
+                    <placeholder><Label text="Không tìm thấy khách hàng"/></placeholder>
+                </TableView>
+
+                <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+                    <Label fx:id="lblPointsTotal" text="Tổng: 0 khách" styleClass="status-text"/>
+                    <Label fx:id="lblVipCount" text="" style="-fx-text-fill:#f59e0b; -fx-font-weight:bold; -fx-font-size:12px;"/>
+                </HBox>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>

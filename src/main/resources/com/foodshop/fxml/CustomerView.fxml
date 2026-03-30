@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.CustomerController"
+      spacing="14" styleClass="view-root">
+
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+        <TextField fx:id="txtSearch"
+                   promptText="🔍  Tìm tên, số điện thoại..."
+                   prefWidth="260"
+                   onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="cbTypeFilter" promptText="Loại khách..." prefWidth="150" onAction="#handleFilter"/>
+        <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#handleRefresh"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="＋ Thêm khách hàng" styleClass="btn-primary" onAction="#handleAdd"/>
+    </HBox>
+
+    <TableView fx:id="tblCustomers" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colName"    text="Họ và tên"      prefWidth="180"/>
+            <TableColumn fx:id="colPhone"   text="Số điện thoại"  prefWidth="130"/>
+            <TableColumn fx:id="colEmail"   text="Email"          prefWidth="170"/>
+            <TableColumn fx:id="colCity"    text="Thành phố"      prefWidth="110"/>
+            <TableColumn fx:id="colType"    text="Loại KH"        prefWidth="110"/>
+            <TableColumn fx:id="colPoints"  text="Điểm tích lũy"  prefWidth="110"/>
+            <TableColumn fx:id="colOrders"  text="Số đơn"         prefWidth="80"/>
+            <TableColumn fx:id="colActions" text="Thao tác"       prefWidth="150"/>
+        </columns>
+        <placeholder><Label text="Chưa có khách hàng nào"/></placeholder>
+    </TableView>
+
+    <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+        <Label fx:id="lblTotal" text="Tổng: 0 khách hàng" styleClass="status-text"/>
+    </HBox>
+</VBox>

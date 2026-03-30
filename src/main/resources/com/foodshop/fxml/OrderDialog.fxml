@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.OrderDialogController"
+      spacing="16" styleClass="dialog-root">
+
+    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+    <VBox spacing="10" HBox.hgrow="ALWAYS">
+
+        <Label text="🥦 Chọn sản phẩm" styleClass="section-title"/>
+
+        <HBox spacing="8">
+            <TextField fx:id="txtProductSearch"
+                       promptText="Tìm tên hoặc mã sản phẩm..."
+                       HBox.hgrow="ALWAYS"
+                       onKeyReleased="#handleProductSearch"/>
+            <ComboBox fx:id="cbProductCategory" prefWidth="130" promptText="Danh mục"
+                      onAction="#handleProductSearch"/>
+        </HBox>
+
+        <TableView fx:id="tblAvailableProducts" prefHeight="200" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="apColCode"  text="Mã"   prefWidth="80"/>
+                <TableColumn fx:id="apColName"  text="Tên"  prefWidth="180"/>
+                <TableColumn fx:id="apColPrice" text="Giá"  prefWidth="110"/>
+                <TableColumn fx:id="apColStock" text="Tồn"  prefWidth="60"/>
+                <TableColumn fx:id="apColAdd"   text=""     prefWidth="60"/>
+            </columns>
+        </TableView>
+
+        <Separator/>
+
+        <Label text="🛒 Giỏ hàng" styleClass="section-title"/>
+
+        <TableView fx:id="tblCart" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="cartColName"     text="Sản phẩm"   prefWidth="180"/>
+                <TableColumn fx:id="cartColPrice"    text="Đơn giá"    prefWidth="110"/>
+                <TableColumn fx:id="cartColQty"      text="SL"         prefWidth="70"/>
+                <TableColumn fx:id="cartColDiscount" text="CK%"        prefWidth="60"/>
+                <TableColumn fx:id="cartColTotal"    text="Thành tiền" prefWidth="110"/>
+                <TableColumn fx:id="cartColRemove"   text=""           prefWidth="50"/>
+            </columns>
+            <placeholder><Label text="Chưa có sản phẩm nào trong giỏ"/></placeholder>
+        </TableView>
+
+        <GridPane hgap="16" vgap="6" styleClass="total-panel">
+            <Label text="Tạm tính:"    GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="total-label"/>
+            <Label fx:id="lblSubtotal" text="0 ₫" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="total-value"/>
+            <Label text="Giảm giá:"    GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="total-label"/>
+            <TextField fx:id="txtDiscount" text="0" prefWidth="100"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       onKeyReleased="#recalcTotal"/>
+            <Label text="Phí ship:"    GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="total-label"/>
+            <TextField fx:id="txtShipping" text="0" prefWidth="100"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       onKeyReleased="#recalcTotal"/>
+            <Label text="TỔNG CỘNG:"  GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="grand-label"/>
+            <Label fx:id="lblGrandTotal" text="0 ₫" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="grand-value"/>
+        </GridPane>
+
+    </VBox>
+
+    <VBox spacing="12" prefWidth="300">
+
+        <Label text="📋 Thông tin đơn hàng" styleClass="section-title"/>
+
+        <!-- Tìm kiếm khách hàng bằng tên hoặc số điện thoại -->
+        <VBox spacing="5">
+            <Label text="Khách hàng:" styleClass="form-label"/>
+            <HBox spacing="6">
+                <TextField fx:id="txtCustomerSearch" HBox.hgrow="ALWAYS"
+                           promptText="Nhập tên hoặc số điện thoại..."
+                           onKeyReleased="#handleCustomerSearch"/>
+                <Button text="＋" styleClass="btn-secondary" onAction="#handleAddCustomer">
+                    <tooltip><Tooltip text="Thêm khách mới"/></tooltip>
+                </Button>
+            </HBox>
+            <ListView fx:id="lstCustomerResult" prefHeight="90" maxHeight="90"
+                      style="-fx-border-color:#d1d5db; -fx-border-radius:6; -fx-background-radius:6;"/>
+            <Label fx:id="lblSelectedCustomer" text="Khách lẻ (chưa chọn)"
+                   style="-fx-text-fill:#6b7280; -fx-font-size:12px;" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Hình thức thanh toán:" styleClass="form-label"/>
+            <ComboBox fx:id="cbPayment" maxWidth="Infinity"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Địa chỉ giao hàng:" styleClass="form-label"/>
+            <TextArea fx:id="txtShippingAddress" prefRowCount="3" wrapText="true"
+                      promptText="Để trống nếu khách tự lấy"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Ghi chú:" styleClass="form-label"/>
+            <TextArea fx:id="txtNotes" prefRowCount="3" wrapText="true"
+                      promptText="Ghi chú cho đơn hàng..."/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label fx:id="lblError" styleClass="error-message" wrapText="true"
+               visible="false" managed="false"/>
+
+        <VBox spacing="8">
+            <Button text="💾 Lưu đơn hàng"
+                    styleClass="btn-primary"
+                    maxWidth="Infinity"
+                    prefHeight="42"
+                    onAction="#handleSaveOrder"/>
+            <Button text="Hủy"
+                    styleClass="btn-secondary"
+                    maxWidth="Infinity"
+                    onAction="#handleCancel"/>
+        </VBox>
+
+    </VBox>
+
+</HBox>

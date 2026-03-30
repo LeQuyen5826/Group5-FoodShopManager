@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.foodshop.controller.LoginController"
+           styleClass="login-root"
+           prefWidth="500" prefHeight="400">
+
+    <VBox alignment="CENTER" spacing="0" maxWidth="380">
+
+        <!-- Header / Logo -->
+        <VBox alignment="CENTER" spacing="8" styleClass="login-header">
+            <Label text="🍽️" styleClass="login-logo"/>
+            <Label text="FoodShop Manager" styleClass="login-title"/>
+            <Label text="Hệ thống quản lý shop thực phẩm online" styleClass="login-subtitle"/>
+        </VBox>
+
+        <!-- Form đăng nhập -->
+        <VBox spacing="14" styleClass="login-form">
+
+            <VBox spacing="5">
+                <Label text="Tên đăng nhập" styleClass="form-label"/>
+                <TextField fx:id="txtUsername"
+                           promptText="Nhập username..."
+                           styleClass="form-input"
+                           onAction="#handleLogin"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Mật khẩu" styleClass="form-label"/>
+                <PasswordField fx:id="txtPassword"
+                               promptText="Nhập mật khẩu..."
+                               styleClass="form-input"
+                               onAction="#handleLogin"/>
+            </VBox>
+
+            <!-- Thông báo lỗi -->
+            <Label fx:id="lblError"
+                   styleClass="error-message"
+                   wrapText="true"
+                   visible="false"/>
+
+            <!-- Nút đăng nhập -->
+            <Button fx:id="btnLogin"
+                    text="Đăng nhập"
+                    onAction="#handleLogin"
+                    styleClass="btn-primary"
+                    maxWidth="Infinity"
+                    prefHeight="42"/>
+
+        </VBox>
+
+        <!-- Footer -->
+        <Label text="© 2024 FoodShop Manager v1.0"
+               styleClass="login-footer"/>
+
+    </VBox>
+</StackPane>

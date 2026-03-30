@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.OrderDetailViewController"
+      spacing="14" styleClass="dialog-root">
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <HBox spacing="40">
+        <VBox spacing="6">
+            <Label text="Mã đơn hàng:" styleClass="form-label"/>
+            <Label fx:id="lblOrderCode" styleClass="stat-value" style="-fx-font-size:18px;"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Trạng thái:" styleClass="form-label"/>
+            <Label fx:id="lblStatus" style="-fx-font-size:14px;-fx-font-weight:bold;"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Ngày đặt:" styleClass="form-label"/>
+            <Label fx:id="lblOrderDate"/>
+        </VBox>
+        <VBox spacing="6">
+            <Label text="Nhân viên tạo:" styleClass="form-label"/>
+            <Label fx:id="lblCreatedBy"/>
+        </VBox>
+    </HBox>
+
+    <Separator/>
+
+    <GridPane hgap="20" vgap="8">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
+        </columnConstraints>
+        <VBox spacing="4" GridPane.columnIndex="0">
+            <Label text="Khách hàng:" styleClass="form-label"/>
+            <Label fx:id="lblCustomer"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1">
+            <Label text="Thanh toán:" styleClass="form-label"/>
+            <Label fx:id="lblPayment"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Địa chỉ giao hàng:" styleClass="form-label"/>
+            <Label fx:id="lblShipping" wrapText="true"/>
+        </VBox>
+        <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Ghi chú:" styleClass="form-label"/>
+            <Label fx:id="lblNotes" wrapText="true"/>
+        </VBox>
+    </GridPane>
+
+    <Separator/>
+
+    <TableView fx:id="tblDetails" VBox.vgrow="ALWAYS" styleClass="data-table" prefHeight="250">
+        <columns>
+            <TableColumn fx:id="colProduct"   text="Sản phẩm"   prefWidth="220"/>
+            <TableColumn fx:id="colUnit"      text="ĐVT"        prefWidth="70"/>
+            <TableColumn fx:id="colQty"       text="Số lượng"   prefWidth="90"/>
+            <TableColumn fx:id="colUnitPrice" text="Đơn giá"    prefWidth="130"/>
+            <TableColumn fx:id="colLineTotal" text="Thành tiền" prefWidth="140"/>
+        </columns>
+    </TableView>
+
+    <GridPane hgap="20" vgap="8" alignment="CENTER_RIGHT">
+        <Label text="Tạm tính:"          GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="total-label"/>
+        <Label fx:id="lblSubtotal"        GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="total-value"/>
+        <Label text="Giảm giá:"          GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="total-label"/>
+        <Label fx:id="lblDiscount"        GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill:#16a34a;"/>
+        <Label text="Phí ship:"          GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="total-label"/>
+        <Label fx:id="lblShippingFee"     GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="total-value"/>
+        <Label text="TỔNG CỘNG:"         GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="grand-label"/>
+        <Label fx:id="lblTotal"           GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="grand-value"/>
+    </GridPane>
+</VBox>

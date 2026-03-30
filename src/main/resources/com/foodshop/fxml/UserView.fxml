@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.UserController"
+      spacing="14" styleClass="view-root">
+
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+        <TextField fx:id="txtSearch"
+                   promptText="🔍  Tìm tên, tên đăng nhập..."
+                   prefWidth="240"
+                   onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="cbRoleFilter" promptText="Vai trò..." prefWidth="160" onAction="#handleFilter"/>
+        <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#handleRefresh"/>
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tblUsers" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colUsername" text="Tên đăng nhập" prefWidth="130"/>
+                    <TableColumn fx:id="colFullName" text="Họ và tên"     prefWidth="160"/>
+                    <TableColumn fx:id="colRole"     text="Vai trò"       prefWidth="120"/>
+                    <TableColumn fx:id="colEmail"    text="Email"         prefWidth="160"/>
+                    <TableColumn fx:id="colPhone"    text="Điện thoại"    prefWidth="110"/>
+                    <TableColumn fx:id="colActive"   text="Trạng thái"    prefWidth="110"/>
+                    <TableColumn fx:id="colActions"  text="Thao tác"      prefWidth="160"/>
+                </columns>
+                <placeholder><Label text="Chưa có người dùng nào"/></placeholder>
+            </TableView>
+            <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+                <Label fx:id="lblTotal" text="Tổng: 0 người dùng" styleClass="status-text"/>
+            </HBox>
+        </VBox>
+
+        <ScrollPane
+                prefWidth="310"
+                minWidth="290"
+                maxWidth="320"
+                fitToWidth="true"
+                hbarPolicy="NEVER"
+                vbarPolicy="AS_NEEDED"
+                VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent;
+                       -fx-background: transparent;
+                       -fx-border-color: transparent;
+                       -fx-padding: 0;">
+
+            <VBox spacing="12"
+                  style="-fx-background-color: white;
+                         -fx-padding: 16;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #e2e8f0;
+                         -fx-border-radius: 8;
+                         -fx-border-width: 1;">
+
+                <Label fx:id="lblFormTitle" text="➕ Thêm người dùng"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+
+                <Separator/>
+
+                <Label text="Tên đăng nhập *" styleClass="form-label"/>
+                <TextField fx:id="txtUsername" promptText="vd: nguyenvan_a"/>
+
+                <Label text="Họ và tên *" styleClass="form-label"/>
+                <TextField fx:id="txtFullName" promptText="vd: Nguyễn Văn A"/>
+
+                <Label text="Email" styleClass="form-label"/>
+                <TextField fx:id="txtEmail" promptText="vd: email@example.com"/>
+
+                <Label text="Số điện thoại" styleClass="form-label"/>
+                <TextField fx:id="txtPhone" promptText="vd: 0901234567"/>
+
+                <Label text="Mật khẩu *" styleClass="form-label"/>
+                <PasswordField fx:id="txtPassword" promptText="Mật khẩu"/>
+
+                <Label text="Vai trò *" styleClass="form-label"/>
+                <ComboBox fx:id="cbRole" maxWidth="Infinity"/>
+
+                <CheckBox fx:id="chkActive" text="Tài khoản đang hoạt động" selected="true"/>
+
+                <Separator/>
+
+                <HBox spacing="8">
+                    <Button fx:id="btnSave" text="➕ Thêm mới" styleClass="btn-primary"
+                            onAction="#handleSave" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Button text="✖ Hủy" styleClass="btn-secondary" onAction="#handleClear"/>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+
+    </HBox>
+</VBox>

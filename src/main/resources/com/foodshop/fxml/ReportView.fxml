@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.ReportController"
+      spacing="14" styleClass="view-root">
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+        <Label text="Từ ngày:" styleClass="form-label"/>
+        <DatePicker fx:id="dpFrom" prefWidth="140"/>
+        <Label text="Đến ngày:" styleClass="form-label"/>
+        <DatePicker fx:id="dpTo" prefWidth="140"/>
+        <Button text="📊 Xem báo cáo" styleClass="btn-primary" onAction="#loadReport"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="cbYear" prefWidth="100" onAction="#loadYearReport"/>
+        <Button text="📅 Xem theo năm" styleClass="btn-secondary" onAction="#loadYearReport"/>
+    </HBox>
+
+    <HBox spacing="12">
+        <VBox styleClass="stat-card stat-green" HBox.hgrow="ALWAYS" spacing="6">
+            <Label text="DOANH THU" styleClass="stat-label"/>
+            <Label fx:id="lblRevenue" text="0 ₫" styleClass="stat-value"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-blue" HBox.hgrow="ALWAYS" spacing="6">
+            <Label text="ĐƠN HOÀN THÀNH" styleClass="stat-label"/>
+            <Label fx:id="lblOrderCount" text="0 đơn" styleClass="stat-value"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-purple" HBox.hgrow="ALWAYS" spacing="6">
+            <Label text="SẢN PHẨM BÁN RA" styleClass="stat-label"/>
+            <Label fx:id="lblItemsSold" text="0 sp" styleClass="stat-value"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-orange" HBox.hgrow="ALWAYS" spacing="6">
+            <Label text="TRUNG BÌNH/ĐƠN" styleClass="stat-label"/>
+            <Label fx:id="lblAvgOrder" text="0 ₫" styleClass="stat-value"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="14" VBox.vgrow="ALWAYS">
+        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS" spacing="10">
+            <Label text="🏆 Top 10 sản phẩm bán chạy" styleClass="card-title"/>
+            <TableView fx:id="tblTopProducts" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="rpColRank"    text="#"         prefWidth="40"/>
+                    <TableColumn fx:id="rpColName"    text="Sản phẩm" prefWidth="200"/>
+                    <TableColumn fx:id="rpColUnit"    text="ĐVT"      prefWidth="60"/>
+                    <TableColumn fx:id="rpColQty"     text="SL bán"   prefWidth="80"/>
+                    <TableColumn fx:id="rpColRevenue" text="Doanh thu" prefWidth="130"/>
+                </columns>
+            </TableView>
+        </VBox>
+        <VBox styleClass="dashboard-card" prefWidth="280" spacing="10">
+            <Label text="📂 Doanh thu theo danh mục" styleClass="card-title"/>
+            <ListView fx:id="lstCategoryRevenue" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.foodshop.controller.MainController"
+            styleClass="main-root"
+            prefWidth="1280" prefHeight="800">
+
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
+
+            <VBox styleClass="sidebar-header" alignment="CENTER" spacing="4">
+                <Label text="🍽️ FoodShop" styleClass="sidebar-logo"/>
+                <Label fx:id="lblCurrentUser" text="Admin" styleClass="sidebar-username"/>
+                <Label fx:id="lblUserRole" text="Quản trị viên" style="-fx-text-fill: #f59e0b; -fx-font-size: 10px;"/>
+            </VBox>
+
+            <VBox fx:id="navMenu" spacing="2" styleClass="nav-menu" VBox.vgrow="ALWAYS">
+
+                <Button fx:id="btnDashboard"
+                        text="📊  Dashboard"
+                        styleClass="nav-btn, nav-btn-active"
+                        maxWidth="Infinity"
+                        onAction="#showDashboard"/>
+
+                <Label text="QUẢN LÝ" styleClass="nav-section-label"/>
+
+                <Button fx:id="btnProducts"
+                        text="🥦  Sản phẩm"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showProducts"/>
+
+                <Button fx:id="btnOrders"
+                        text="🛒  Đơn hàng"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showOrders"/>
+
+                <Button fx:id="btnCustomers"
+                        text="👥  Khách hàng"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showCustomers"/>
+
+                <Button fx:id="btnInventory"
+                        text="📦  Kho hàng"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showInventory"/>
+
+                <Button fx:id="btnPromotions"
+                        text="🎁  Khuyến mãi"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showPromotions"/>
+
+                <Label text="THỐNG KÊ" styleClass="nav-section-label"/>
+
+                <Button fx:id="btnReports"
+                        text="📈  Báo cáo"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showReports"/>
+
+                <Label text="HỆ THỐNG" styleClass="nav-section-label"/>
+
+                <Button fx:id="btnUsers"
+                        text="⚙  Người dùng"
+                        styleClass="nav-btn"
+                        maxWidth="Infinity"
+                        onAction="#showUsers"/>
+
+            </VBox>
+
+            <Button text="🚪  Đăng xuất"
+                    styleClass="btn-logout"
+                    maxWidth="Infinity"
+                    onAction="#handleLogout"/>
+
+        </VBox>
+    </left>
+
+    <center>
+        <VBox styleClass="content-area">
+
+            <!-- Thanh tiêu đề trang -->
+            <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+                <Label fx:id="lblPageTitle" text="Dashboard" styleClass="page-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblDateTime" styleClass="datetime-label"/>
+            </HBox>
+
+            <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS" styleClass="content-pane"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

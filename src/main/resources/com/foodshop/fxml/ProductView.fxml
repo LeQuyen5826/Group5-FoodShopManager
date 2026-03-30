@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.ProductController"
+      spacing="14" styleClass="view-root">
+
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="toolbar">
+
+        <TextField fx:id="txtSearch"
+                   promptText="🔍  Tìm tên sản phẩm, mã SP..."
+                   prefWidth="260"
+                   onKeyReleased="#handleSearch"/>
+
+        <ComboBox fx:id="cbCategoryFilter"
+                  promptText="Danh mục..."
+                  prefWidth="160"
+                  onAction="#handleFilter"/>
+
+        <ComboBox fx:id="cbStatusFilter"
+                  promptText="Trạng thái..."
+                  prefWidth="140"
+                  onAction="#handleFilter"/>
+
+        <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#handleRefresh"/>
+
+    </HBox>
+
+    <TableView fx:id="tblProducts" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colCode"     text="Mã SP"        prefWidth="90"/>
+            <TableColumn fx:id="colName"     text="Tên sản phẩm" prefWidth="220"/>
+            <TableColumn fx:id="colCategory" text="Danh mục"     prefWidth="120"/>
+            <TableColumn fx:id="colUnit"     text="ĐVT"          prefWidth="70"/>
+            <TableColumn fx:id="colPrice"    text="Giá bán"      prefWidth="120"/>
+            <TableColumn fx:id="colStock"    text="Tồn kho"      prefWidth="90"/>
+            <TableColumn fx:id="colExpiry"   text="Hạn SD"       prefWidth="100"/>
+            <TableColumn fx:id="colStatus"   text="Trạng thái"   prefWidth="120"/>
+            <TableColumn fx:id="colActions"  text="Thao tác"     prefWidth="150"/>
+        </columns>
+        <placeholder>
+            <Label text="Không tìm thấy sản phẩm nào"/>
+        </placeholder>
+    </TableView>
+
+    <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+        <Label fx:id="lblTotalCount" text="Tổng: 0 sản phẩm" styleClass="status-text"/>
+        <Label fx:id="lblLowStockCount" text="" styleClass="status-warning"/>
+    </HBox>
+
+</VBox>

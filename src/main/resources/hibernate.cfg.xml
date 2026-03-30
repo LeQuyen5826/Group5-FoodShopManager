@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- ==================== KẾT NỐI DATABASE ==================== -->
+        <!-- Thay đổi username/password theo cấu hình MySQL của bạn -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/foodshop_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Ho_Chi_Minh&amp;characterEncoding=UTF-8
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+
+        <!-- ==================== DIALECT ==================== -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- ==================== CONNECTION POOL ==================== -->
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+
+        <!-- ==================== DDL AUTO ==================== -->
+        <!-- 
+            update  = tự động cập nhật schema (dùng khi phát triển)
+            create  = xóa và tạo lại (XÓA DỮ LIỆU!)  
+            validate= chỉ kiểm tra schema
+        -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- ==================== HIỂN THỊ SQL ==================== -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- ==================== ENTITY CLASSES ==================== -->
+        <mapping class="com.foodshop.model.User"/>
+        <mapping class="com.foodshop.model.Category"/>
+        <mapping class="com.foodshop.model.Product"/>
+        <mapping class="com.foodshop.model.Customer"/>
+        <mapping class="com.foodshop.model.Order"/>
+        <mapping class="com.foodshop.model.OrderDetail"/>
+        <mapping class="com.foodshop.model.InventoryLog"/>
+    </session-factory>
+</hibernate-configuration>

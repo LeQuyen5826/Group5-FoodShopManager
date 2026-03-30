@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.foodshop.controller.InventoryController"
+      spacing="14" styleClass="view-root">
+    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+        <Tab text="📥 Nhập kho hàng">
+            <VBox spacing="12" style="-fx-padding:16;">
+                <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+                    <Label text="Sản phẩm:" styleClass="form-label"/>
+                    <ComboBox fx:id="cbImportProduct" prefWidth="300" promptText="Chọn sản phẩm..."/>
+                    <Label text="Số lượng:" styleClass="form-label"/>
+                    <TextField fx:id="txtImportQty" prefWidth="80" promptText="0"/>
+                    <Label text="Giá nhập:" styleClass="form-label"/>
+                    <TextField fx:id="txtImportCost" prefWidth="120" promptText="0 ₫"/>
+                    <Button text="✅ Nhập kho" styleClass="btn-primary" onAction="#handleImport"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnAddProduct" text="＋ Thêm sản phẩm mới"
+                            styleClass="btn-secondary" onAction="#handleAddProduct"/>
+                </HBox>
+                <TextArea fx:id="txtImportNote" promptText="Ghi chú lô hàng..." prefRowCount="2" wrapText="true"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="📋 Lịch sử xuất nhập">
+            <VBox spacing="10" style="-fx-padding:16;">
+                <HBox spacing="10" styleClass="toolbar">
+                    <DatePicker fx:id="dpLogFrom" promptText="Từ ngày" prefWidth="140"/>
+                    <DatePicker fx:id="dpLogTo"   promptText="Đến ngày" prefWidth="140"/>
+                    <ComboBox fx:id="cbLogType" prefWidth="150" promptText="Loại giao dịch"/>
+                    <Button text="🔍 Lọc" styleClass="btn-secondary" onAction="#loadLogs"/>
+                </HBox>
+                <TableView fx:id="tblLogs" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="logColDate"    text="Thời gian"       prefWidth="150"/>
+                        <TableColumn fx:id="logColProduct" text="Sản phẩm"        prefWidth="200"/>
+                        <TableColumn fx:id="logColType"    text="Loại"            prefWidth="110"/>
+                        <TableColumn fx:id="logColChange"  text="Thay đổi"        prefWidth="90"/>
+                        <TableColumn fx:id="logColBefore"  text="Trước"           prefWidth="80"/>
+                        <TableColumn fx:id="logColAfter"   text="Sau"             prefWidth="80"/>
+                        <TableColumn fx:id="logColRef"     text="Tham chiếu"      prefWidth="120"/>
+                        <TableColumn fx:id="logColUser"    text="Người thực hiện" prefWidth="130"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="📦 Tổng hợp tồn kho">
+            <VBox spacing="10" style="-fx-padding:16;">
+                <HBox spacing="10" styleClass="toolbar">
+                    <Button text="🔄 Làm mới" styleClass="btn-secondary" onAction="#loadStockSummary"/>
+                    <Button text="⚠ Chỉ xem sắp hết" styleClass="btn-secondary" onAction="#showLowStock"/>
+                </HBox>
+                <TableView fx:id="tblStock" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="sColCode"     text="Mã SP"         prefWidth="90"/>
+                        <TableColumn fx:id="sColName"     text="Tên"           prefWidth="220"/>
+                        <TableColumn fx:id="sColCategory" text="Danh mục"      prefWidth="120"/>
+                        <TableColumn fx:id="sColStock"    text="Tồn kho"       prefWidth="90"/>
+                        <TableColumn fx:id="sColMin"      text="Mức tối thiểu" prefWidth="120"/>
+                        <TableColumn fx:id="sColStatus"   text="Cảnh báo"      prefWidth="120"/>
+                        <TableColumn fx:id="sColExpiry"   text="Hạn SD"        prefWidth="110"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>
