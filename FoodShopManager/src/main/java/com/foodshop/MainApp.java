@@ -38,9 +38,7 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Hiển thị màn hình đăng nhập
-     */
+
     public static void showLoginScreen() {
         try {
             Parent root = FXMLLoader.load(
@@ -60,9 +58,7 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Hiển thị màn hình chính sau khi đăng nhập
-     */
+    
     public static void showMainScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -85,9 +81,6 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Tải một FXML view vào vùng nội dung chính
-     */
     public static Parent loadView(String fxmlName) throws IOException {
         String path = "/com/foodshop/fxml/" + fxmlName;
         URL url = MainApp.class.getResource(path);
@@ -95,9 +88,6 @@ public class MainApp extends Application {
         return FXMLLoader.load(url);
     }
 
-    /**
-     * Hiển thị thông báo lỗi kết nối DB
-     */
     private void showDatabaseError(String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
             javafx.scene.control.Alert.AlertType.ERROR
